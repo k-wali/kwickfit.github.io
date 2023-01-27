@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block contentright %}
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            <div class="form-group">
+                {{ form.title.label(class="form-control-label") }}
+                {% if form.title.errors %}
+                {{ form.title(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.title.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.title(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.content.label(class="form-control-label") }}
+                {% if form.content.errors %}
+                {{ form.content(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.content.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.content(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.svehicle.label(class="form-control-label") }}
+                {% if form.svehicle.errors %}
+                {{ form.svehicle(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.svehicle.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.svehicle(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+<script>
+    select_vehicle = document.getElementById('svehicle');
+
+    select_vehicle.onload = function () {
+        get_user = getuser.value;
+        console.log(get_user)
+        fetch('uservehicle/' + get_user).then(function (response) {
+            response.json().then(function (data) {
+                optionHTML = '';
+                for (uservehicle of data.uservehiclelist) {
+                    optionHTML += '<option value="' + uservehicle.id + '">' + uservehicle.vehiclemake + uservehicle.regplate + '</option>'
+                }
+                province_select.innerHTML = optionHTML;
+            });
+        });
+    }
+</script>
+
+{% endblock contentright %}
+{% block content %}
+<fieldset class="form-group">
+    <legend class="border-bottom mb-4">{{ legendright }}</legend>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Serial</th>
+                <th scope="col">Name</th>
+                <th scope="col">Content</th>
+                <th scope="col">Status</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Invoice</th>
+                <th scope="col">Inspection</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Home Inspection</td>
+                <td>Breack Pads Noise</td>
+                <td>Complete</td>
+                <td>800</td>
+                <td>KW887895</td>
+                <td>Pending</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Service</td>
+                <td>Breack Pads</td>
+                <td>Pending</td>
+                <td>16000</td>
+                <td>KW3368859</td>
+                <td>Pending</td>
+            </tr>
+        </tbody>
+    </table>
+</fieldset>
+{% endblock content %}

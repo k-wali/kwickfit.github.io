@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content-section">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">{{ legend }}</legend>
+            <div class="form-group">
+                {{ form.company_name.label(class="form-control-label") }}
+                {% if form.company_name.errors %}
+                {{ form.company_name(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.company_name.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.company_name(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.mobile.label(class="form-control-label") }}
+                {% if form.mobile.errors %}
+                {{ form.mobile(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.mobile.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.mobile(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {{ form.webpage.label(class="form-control-label") }}
+                {% if form.webpage.errors %}
+                {{ form.webpage(class="form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in form.webpage.errors %}
+                    <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.webpage(class="form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <div class="media">
+                <div>
+                    <img class="rounded-circle account-img" src="{{ image_ntn }}">
+                </div>
+                <div class="form-group">
+                    {{ form.img_ntn.label(class="form-control-label") }}
+                    {% if form.img_ntn.errors %}
+                    {{ form.img_ntn(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.img_ntn.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.img_ntn(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="media">
+                <img class="rounded-circle account-img" src="{{ image_logo }}">
+                <div class="form-group">
+                    {{ form.img_logo.label(class="form-control-label") }}
+                    {% if form.img_logo.errors %}
+                    {{ form.img_logo(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.img_logo.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.img_logo(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            {{ form.submit(class="btn btn-outline-info") }}
+        </div>
+    </form>
+</div>
+
+{% endblock content %}
+{% block contentright %}
+
+{% endblock contentright %}
+<!--Google API AIzaSyAmpSThmxoiir5q908EoJSsImsehm0X-SU -->
+<!-- AIzaSyAmpSThmxoiir5q908EoJSsImsehm0X-SU -->

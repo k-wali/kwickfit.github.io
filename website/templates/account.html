@@ -1,0 +1,365 @@
+{% extends 'sidebar_dashboard.html' %}
+{% block page_content %}
+<div id="content">
+    {% include 'includes/header.html' %}
+    <div class="col-lg-12 col-md-12">
+        <div class="card" style="min-height: 485px">
+            <div class="main-content">
+                <div class="media">
+                    <img class="rounded-circle account-img" src="{{ image_file }}">
+                    <div class="media-body">
+                        <h2 class="account-heading">
+                            {% if current_user.fname == None %}
+                            {{ current_user.username }}
+                            {% else %}
+                            {% if current_user.mname == None %}
+                            {{ current_user.fname }} {{ current_user.lname }}
+                            {% else %}
+                            {{ current_user.fname }} {{ current_user.mname }} {{ current_user.lname }}
+                            {% endif %}
+                            {% endif %}
+                        </h2>
+                        <p class="text-secondary">{{ current_user.email }}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- FORM HERE -->
+            <form method="POST" action="" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <fieldset class="form-group">
+                    <legend class="border-bottom mb-4">User Information</legend>
+                    <div class="content-section row g-3">
+
+                        <div class="form-group col-md-4">
+                            {{ form.username.label(class="form-control-label col-form-label-sm") }}
+                            {% if form.username.errors %}
+                            {{ form.username(class="form-control is-invalid form-control-sm") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.username.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.username(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-8">
+                            {{ form.email.label(class="form-control-label form-control-sm") }}
+                            {% if form.email.errors %}
+                            {{ form.email(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.email(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.fname.label(class="form-control-label form-control-sm") }}
+                            {% if form.fname.errors %}
+                            {{ form.fname(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.fname.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.fname(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.mname.label(class="form-control-label form-control-sm") }}
+                            {% if form.mname.errors %}
+                            {{ form.mname(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.mname.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.mname(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.lname.label(class="form-control-label form-control-sm") }}
+                            {% if form.lname.errors %}
+                            {{ form.lname(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.lname.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.lname(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.profession.label(class="form-control-label form-control-sm") }}
+                            {% if form.profession.errors %}
+                            {{ form.profession(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.profession.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.profession(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.cnic_num.label(class="form-control-label form-control-sm") }}
+                            {% if form.cnic_num.errors %}
+                            {{ form.cnic_num(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.cnic_num.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.cnic_num(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.phone_num.label(class="form-control-label form-control-sm") }}
+                            {% if form.phone_num.errors %}
+                            {{ form.phone_num(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.phone_num.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.phone_num(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.country.label(class="form-control-label form-control-sm") }}
+                            {% if form.country.errors %}
+                            {{ form.country(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.country.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.country(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.province.label(class="form-control-label form-control-sm") }}
+                            {{ form.province(class="form-control form-control-sm") }}
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.city.label(class="form-control-label form-control-sm") }}
+                            {{ form.city(class="form-control form-control-sm") }}
+
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.districts.label(class="form-control-label form-control-sm") }}
+                            {{ form.districts(class="form-control form-control-sm") }}
+
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.town.label(class="form-control-label form-control-sm") }}
+                            {{ form.town(class="form-control form-control-sm") }}
+
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.area.label(class="form-control-label form-control-sm") }}
+                            {{ form.area(class="form-control form-control-sm") }}
+
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.house.label(class="form-control-label form-control-sm") }}
+                            {% if form.house.errors %}
+                            {{ form.house(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.house.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.house(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.street.label(class="form-control-label form-control-sm") }}
+                            {% if form.street.errors %}
+                            {{ form.street(class="form-control form-control-sm is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.street.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.street(class="form-control form-control-sm") }}
+                            {% endif %}
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ form.picture.label() }}
+                            {{ form.picture(class="form-control-file") }}
+
+                            {% if form.picture.errors %}
+                            {% for error in form.picture.errors %}
+                            <span class="text-danger">{{ error }}</span> </br>
+
+                            {% endfor %}
+
+                            {% endif %}
+                        </div>
+                </fieldset>
+                <div class="form-group col-md-4">
+                    {{ form.submit(class="btn btn-outline-info") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    country_select = document.getElementById('country');
+    province_select = document.getElementById('province');
+    province_clicked = document.getElementById('province');
+    city_select = document.getElementById('city');
+    city_clicked = document.getElementById('city');
+    disctricts_select = document.getElementById('districts');
+    disctricts_clicked = document.getElementById('districts');
+    town_select = document.getElementById('town');
+    area_select = document.getElementById('area');
+
+
+    country_select.onchange = function () {
+        countryid = country_select.value;
+        city_select.value = "";
+        disctricts_select.value = "";
+        town_select.value = "";
+        area_select.value = "";
+        fetch('province/' + countryid).then(function (response) {
+            response.json().then(function (data) {
+                optionHTML = '';
+                for (province of data.provincelist) {
+                    optionHTML += '<option value="' + province.id + '">' + province.province + '</option>'
+                }
+                province_select.innerHTML = optionHTML;
+            });
+        });
+    }
+    province_select.onchange = function () {
+        provinceid = province_select.value;
+        disctricts_select.value = "";
+        town_select.value = "";
+        area_select.value = "";
+        fetch('city/' + provinceid).then(function (response) {
+            response.json().then(function (data) {
+                optionHTML = '';
+                for (city_rs of data.citylist) {
+                    optionHTML += '<option value="' + city_rs.id + '">' + city_rs.city + '</option>'
+                }
+                city_select.innerHTML = optionHTML;
+            });
+        });
+    }
+    province_clicked.onclick = function () {
+        countryid = country_select.value;
+        city_select.value = "";
+        disctricts_select.value = "";
+        town_select.value = "";
+        area_select.value = "";
+        fetch('province/' + countryid).then(function (response) {
+            response.json().then(function (data) {
+                optionHTML = '';
+                for (province of data.provincelist) {
+                    optionHTML += '<option value="' + province.id + '">' + province.province + '</option>'
+                }
+                province_select.innerHTML = optionHTML;
+            });
+        });
+    }
+    city_select.onchange = function () {
+        cityid = city_select.value;
+        town_select.value = "";
+        area_select.value = "";
+        fetch('district/' + cityid).then(function (response) {
+            response.json().then(function (data) {
+                optionHTML = '';
+                for (disctrict_rs of data.districtlist) {
+                    optionHTML += '<option value="' + disctrict_rs.id + '">' + disctrict_rs.district + '</option>'
+                }
+                disctricts_select.innerHTML = optionHTML;
+            });
+        });
+    }
+    city_clicked.onclick = function () {
+        provinceid = province_select.value;
+        disctricts_select.value = "";
+        town_select.value = "";
+        area_select.value = "";
+        fetch('city/' + provinceid).then(function (response) {
+            response.json().then(function (data) {
+                optionHTML = '';
+                for (city_rs of data.citylist) {
+                    optionHTML += '<option value="' + city_rs.id + '">' + city_rs.city + '</option>'
+                }
+                city_select.innerHTML = optionHTML;
+            });
+        });
+    }
+    disctricts_select.onchange = function () {
+        disctrictid = disctricts_select.value;
+        town_select.value = "";
+        area_select.value = "";
+        fetch('town/' + disctrictid).then(function (response) {
+            response.json().then(function (data) {
+                optionHTML = '';
+                for (town_rs of data.townlist) {
+                    optionHTML += '<option value="' + town_rs.id + '">' + town_rs.town + '</option>'
+                }
+                town_select.innerHTML = optionHTML;
+            });
+        });
+    }
+    disctricts_clicked.onclick = function () {
+        cityid = city_select.value;
+        town_select.value = "";
+        area_select.value = "";
+        fetch('district/' + cityid).then(function (response) {
+            response.json().then(function (data) {
+                optionHTML = '';
+                for (disctrict_rs of data.districtlist) {
+                    optionHTML += '<option value="' + disctrict_rs.id + '">' + disctrict_rs.district + '</option>'
+                }
+                disctricts_select.innerHTML = optionHTML;
+            });
+        });
+    }
+    town_select.onchange = function () {
+        townid = town_select.value;
+        area_select.value = "";
+        fetch('area/' + townid).then(function (response) {
+            response.json().then(function (data) {
+                optionHTML = '';
+                for (area_rs of data.arealist) {
+                    optionHTML += '<option value="' + area_rs.id + '">' + area_rs.area + '</option>'
+                }
+                area_select.innerHTML = optionHTML;
+            });
+        });
+    }
+
+</script>
+{% endblock page_content %}
+{% block page_script %}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+            $('#content').toggleClass('active');
+        });
+        $('.more-button,.body-overlay').on('click', function () {
+            $('#sidebar,.body-overlay').toggleClass('show-nav');
+        });
+    });
+</script>
+{% endblock page_script %}

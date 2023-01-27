@@ -1,0 +1,30 @@
+{% extends 'sidebar_dashboard.html' %}
+{% block page_content %}
+<div id="content">
+    {% include 'includes/header.html' %}
+    <div class="main-content">
+        {% include 'includes/header_2nd.html' %}
+        <div class="row ">
+            {% include 'includes/full_product.html' %}
+            {% include 'includes/body_right.html' %}
+        </div>
+        {% include 'includes/footer.html' %}
+    </div>
+</div>
+
+
+
+{% endblock page_content %}
+{% block page_script %}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+            $('#content').toggleClass('active');
+        });
+        $('.more-button,.body-overlay').on('click', function () {
+            $('#sidebar,.body-overlay').toggleClass('show-nav');
+        });
+    });
+</script>
+{% endblock page_script %}

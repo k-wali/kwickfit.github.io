@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="mb-3">Order by {{ user.username }}({{ userorder.total }})</h1>
+{% for userorder in userorders %}
+<article class="media content-section">
+    <img class="rounded-circle article-img"
+        src="{{ url_for('static', filename='profile_pics/' + userorder.author.image_file) }}">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="{{ url_for('views.user_order', username=userorder.author.username)}}">{{
+                userorder.author.username }}</a>
+            <small class="text-muted">{{ userorder.order_posted_date.strftime('%Y-%m-%d') }}</small>
+        </div>
+        <h2><a class="article-title" href="#">{{ userorder.order }}</a></h2>
+
+
+        <p class="article-content">{{ userorder.order_content }}</p>
+    </div>
+</article>
+{% endfor %}
+
+{% endblock content %}
+{% block contentright %}
+<h1>Hello</h1>
+{% endblock contentright %}
